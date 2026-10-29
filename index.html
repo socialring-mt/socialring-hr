@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>인사총무파트 주간보고</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- 상단 헤더 -->
+    <header class="top">
+      <div>
+        <h1>인사총무파트 주간보고</h1>
+        <p class="sub" id="subtitle">인사명부를 불러오는 중…</p>
+      </div>
+      <div class="badges">
+        <span class="badge">데이터 기준일 <b id="baseDate">-</b></span>
+        <button type="button" class="badge sync" id="syncBtn" title="클릭하면 지금 바로 다시 불러옵니다">
+          <i class="dot" id="syncDot"></i><span id="syncText">실시간 동기화</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- 탭 메뉴 -->
+    <nav class="tabs" id="tabs">
+      <button type="button" data-tab="home">홈</button>
+      <button type="button" data-tab="dashboard">대시보드</button>
+      <button type="button" data-tab="contract">계약 · 수습 현황</button>
+      <button type="button" data-tab="payroll">급여 현황</button>
+      <button type="button" data-tab="calendar">채용 · 면접 캘린더</button>
+      <button type="button" data-tab="recruit">채용 현황</button>
+      <button type="button" data-tab="weekly">주간 업무 보고</button>
+      <button type="button" data-tab="roster" class="active">전체 인원명부</button>
+    </nav>
+
+    <main>
+      <!-- 전체 인원명부 탭 -->
+      <section class="panel active" id="panel-roster">
+        <h2>전체 인원명부</h2>
+
+        <div class="stats" id="stats"></div>
+
+        <div class="toolbar">
+          <input type="search" id="q" placeholder="이름·부서·직무·직책으로 검색" autocomplete="off">
+          <select id="fGroup"><option value="">전체 부서</option></select>
+          <select id="fStatus">
+            <option value="">전체 상태</option>
+            <option value="재직">재직</option>
+            <option value="퇴사예정">퇴사예정</option>
+            <option value="퇴사">퇴사</option>
+          </select>
+          <span class="count" id="count"></span>
+        </div>
+
+        <div class="table-box">
+          <table>
+            <thead>
+              <tr>
+                <th data-key="dept">부서</th>
+                <th data-key="sub">부서(상세)</th>
+                <th data-key="job" class="left">직무</th>
+                <th data-key="pos">직책</th>
+                <th data-key="name">성명</th>
+                <th data-key="join">입사일</th>
+                <th data-key="leave">퇴사일</th>
+                <th data-key="status">상태</th>
+                <th data-key="grant">정부지원금</th>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+          <div class="msg" id="msg">불러오는 중…</div>
+        </div>
+      </section>
+
+      <!-- 아직 만들지 않은 탭 -->
+      <section class="panel" id="panel-placeholder">
+        <h2 id="phTitle"></h2>
+        <div class="placeholder">이 탭은 준비 중입니다. 연결할 시트가 정해지면 같은 방식으로 추가할 수 있어요.</div>
+      </section>
+    </main>
+
+    <footer class="foot">데이터 출처: 구글 스프레드시트(웹 게시 CSV) · 5분마다 자동 갱신</footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
